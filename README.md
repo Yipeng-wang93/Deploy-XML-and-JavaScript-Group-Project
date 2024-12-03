@@ -2,7 +2,7 @@ Brief description:
 This travel website is a dynamic platform designed to provide users with detailed information about their chosen travel destinations. Users can select a Canadian city and view up-to-date weather, attractions, hotels, restaurants, local cultural experiences and more. By combing weather forecast and dynamic travel information functionalities, the website allows users to see real-time weather updates as well as browse recommendations for attractions and more.
 
 Run locally:
-Because only I have two servers(server.js and server-attractions.js), so choose one of js file, right click the file and open the terminal. Input this command: npm run start-server & npm run start-attractions. Then press enter. 
+Because only I have two servers(server.js and server-attractions.js), so download two server files, and choose one of js file, right click the file and open the terminal. Input this command: npm run start-server & npm run start-attractions. Then press enter. And then searching weather and searching location will work well on Destination & Weather page and Attractions & Map page.
 
 Team contributions:
 
