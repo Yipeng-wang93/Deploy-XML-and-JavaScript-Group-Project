@@ -1,0 +1,55 @@
+{
+    "transportData": [
+      {
+        "mode": "Bus",
+        "company": "City Transit",
+        "duration": "45 mins",
+        "cost": "$2.50",
+        "departure": "Downtown Terminal",
+        "arrival": "Picnic Park Entrance"
+      },
+      {
+        "mode": "Car",
+        "company": "Uber",
+        "duration": "30 mins",
+        "cost": "$15.00",
+        "departure": "Your Home",
+        "arrival": "Picnic Park Entrance"
+      },
+      {
+        "mode": "Bike",
+        "company": "Bike Share",
+        "duration": "60 mins",
+        "cost": "$5.00",
+        "departure": "Your Home",
+        "arrival": "Picnic Park Entrance"
+      }
+    ],
+    "fiveStarHotels": [
+      "Fairmont Banff Springs, Alberta",
+      "Fairmont Chateau Lake Louise, Alberta",
+      "The Rimrock Resort Hotel, Alberta",
+      "Fairmont Pacific Rim, Vancouver",
+      "Rosewood Hotel Georgia, Vancouver",
+      "Shangri-La Hotel, Vancouver",
+      "The Westin Bayshore, Vancouver",
+      "The Fort Garry Hotel, Winnipeg",
+      "The Ritz-Carlton, Toronto",
+      "Four Seasons Hotel, Toronto",
+      "Shangri-La Hotel, Toronto",
+      "Fairmont Royal York, Toronto",
+      "St. Regis Toronto, Toronto",
+      "Langdon Hall Country House Hotel & Spa, Cambridge",
+      "Fairmont Le Château Frontenac, Quebec City",
+      "Hôtel Le Germain, Quebec City",
+      "Ritz-Carlton Montreal, Montreal",
+      "Four Seasons Hotel Montreal, Montreal",
+      "Delta Hotels by Marriott Bessborough, Saskatoon",
+      "Fox Harb’r Resort, Wallace",
+      "Fogo Island Inn, Fogo Island",
+      "Algonquin Resort St. Andrews by-the-Sea, St. Andrews",
+      "The Great George, Charlottetown"
+    ],
+    "itineraries": []
+  }
+  

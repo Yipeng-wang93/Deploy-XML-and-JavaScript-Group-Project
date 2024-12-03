@@ -1,0 +1,140 @@
+/* Destination Search & Weather Page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar nav ul li {
+    margin: 0 10px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar nav ul li a:hover {
+    color: #ddd;
+}
+
+/* Destination Search Section */
+#destination-search {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+
+#destination-search h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#destination-search form {
+    display: inline-block;
+    text-align: left;
+    max-width: 400px;
+    width: 100%;
+}
+
+#destination-search label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#destination-search input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#destination-search button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#destination-search button:hover {
+    background-color: #0056b3;
+}
+
+/* Weather Information Section */
+#weather-info {
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+}
+
+#weather-info h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#weather-results {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-data {
+    margin-bottom: 15px;
+}
+
+.weather-data p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+    .navbar nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #destination-search form {
+        width: 90%;
+    }
+
+    #weather-results {
+        width: 90%;
+    }
+}

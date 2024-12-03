@@ -1,0 +1,160 @@
+/* User Reviews & Ratings Page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar nav ul li {
+    margin: 0 10px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar nav ul li a:hover {
+    color: #ddd;
+}
+
+/* User Reviews Section */
+#user-reviews {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#user-reviews h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.review-form {
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-form form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.review-form form input,
+.review-form form textarea,
+.review-form form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.review-form form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-form form button:hover {
+    background-color: #0056b3;
+}
+
+#reviews-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-item .review-text {
+    flex: 1;
+    text-align: left;
+}
+
+.review-item .stars {
+    color: #ffcc00;
+    font-size: 1.2em;
+}
+
+.review-item .emoji-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+    font-size: 1em;
+    align-items: center;
+    margin-top: 10px;  /* Added margin to separate from stars */
+}
+
+.review-item .emoji-buttons span {
+    cursor: pointer;
+}
+
+.emoji-count {
+    font-size: 1em;
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .navbar nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-form {
+        width: 90%;
+    }
+
+    #reviews-list {
+        width: 90%;
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chasing Maple - User Reviews & Ratings</title>
+    <link rel="stylesheet" href="styles/views.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="">Chasing Maple</a></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="des.html">Destinations & Weather</a></li>
+                    <li><a href="attractions.html">Attractions & Map</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="itinerary.html">Itinerary Builder</a></li>
+                    <li><a href="travelDeals.html">Travel Deals</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="user-reviews">
+        <h2>User Reviews & Ratings</h2>
+
+        <div class="review-form">
+            <form onsubmit="event.preventDefault(); submitReview();">
+                <label for="user-name">Name:</label>
+                <input type="text" id="user-name" required>
+
+                <label for="review">Your Review:</label>
+                <textarea id="review" rows="4" required></textarea>
+
+                <label for="rating">Rating:</label>
+                <select id="rating" required>
+                    <option value="">Select a rating</option>
+                    <option value="5">5 - Excellent</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="3">3 - Good</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="1">1 - Poor</option>
+                </select>
+
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+
+        <div id="reviews-list"></div>
+    </section>
+
+    <script src="javascript/reviews.js"></script>
+</body>
+</html>

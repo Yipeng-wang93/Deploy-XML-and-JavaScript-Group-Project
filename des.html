@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chasing Maple - Destination Search & Weather</title>
+    <link rel="stylesheet" href="styles/des.css">
+    <style>
+        /* Table styling for weather results */
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 2px solid black;
+            padding: 15px;
+        }
+        thead {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar for the website -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="">Travel Explorer</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="des.html">Destinations & Weather</a></li>
+                    <li><a href="attractions.html">Attractions & Map</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="itinerary.html">Itinerary Builder</a></li>
+                    <li><a href="travelDeals.html">Travel Deals</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section for entering a destination to fetch weather data -->
+    <section id="destination-search">
+        <h2>Search Destinations</h2>
+        <form id="searchForm">
+            <label for="destination">Enter Destination:</label>
+            <!-- Input field for the city or destination -->
+            <input type="text" id="destination" name="destination" placeholder="Enter a city" required>
+            <!-- Submit button to trigger the weather search -->
+            <button type="submit" id="loadButton">Search</button>
+        </form>
+    </section>
+
+    <!-- Section for displaying the real-time weather information -->
+    <section id="weather-info">
+        <h2>Real-Time Weather Information</h2>
+        <div id="weather-results">
+            <h1>Detailed Weather</h1>
+            <!-- Table structure to display weather data -->
+            <table id="result">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Month</th>
+                        <th>Day</th>
+                        <th>Hour</th>
+                        <th>Minute</th>
+                        <th>Period</th>
+                        <th>Forecast Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer for the webpage -->
+    <footer>
+        <p>© 2024 Chasing Maple. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Object to store mapping of city names to weather API URLs
+        const locationMapping = {};
+        let isSiteListLoaded = false; // Flag to check if site list has been loaded
+
+        // Function to load the list of sites (cities) from the server
+        async function loadSiteList() {
+            try {
+                // Fetch site list XML data from the server
+                const response = await fetch('http://localhost:3000/api/sitelist');
+                if (!response.ok) throw new Error('Failed to load site list');
+
+                // Parse the fetched XML data
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(await response.text(), 'text/xml');
+
+                // Extract site information from the XML
+                const sites = xmlDoc.getElementsByTagName('site');
+                for (let site of sites) {
+                    const code = site.getAttribute('code'); // Unique site code
+                    const provinceCode = site.getElementsByTagName('provinceCode')[0]?.textContent; // Province code
+                    const cityName = site.getElementsByTagName('nameEn')[0]?.textContent.toLowerCase() || 
+                                     site.getElementsByTagName('nameFr')[0]?.textContent.toLowerCase(); // City name in English or French
+
+                    // Map city names to the corresponding weather API URLs
+                    if (cityName) {
+                        locationMapping[cityName.trim()] = `https://dd.weather.gc.ca/citypage_weather/xml/${provinceCode}/${code}_e.xml`;
+                    }
+                }
+
+                isSiteListLoaded = true; // Mark the site list as loaded
+                document.getElementById('loadButton').disabled = false; // Enable the search button
+            } catch (error) {
+                console.error('Error loading site list:', error);
+                alert('Failed to load site list. Please try again later.');
+            }
+        }
+
+        // Function to fetch and display weather data for a given destination
+        async function loadWeather(destination) {
+            if (!isSiteListLoaded) {
+                alert('Site list is still loading. Please wait.');
+                return;
+            }
+
+            const weatherUrl = locationMapping[destination.toLowerCase()]; // Get the weather API URL for the entered city
+            if (!weatherUrl) {
+                alert('Weather data for the entered location is not available.');
+                return;
+            }
+
+            try {
+                // Fetch weather data from the server
+                const response = await fetch(`http://localhost:3000/api/weather?url=${encodeURIComponent(weatherUrl)}`);
+                if (!response.ok) throw new Error('Failed to fetch weather data');
+
+                // Parse the fetched XML data
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(await response.text(), 'text/xml');
+                const forecastGroup = xmlDoc.getElementsByTagName('forecastGroup')[0]; // Get the forecast group
+                const forecasts = forecastGroup.getElementsByTagName('forecast'); // Get individual forecasts
+
+                // Clear the existing weather data in the table
+                document.querySelector('#result tbody').innerHTML = '';
+                for (let forecast of forecasts) {
+                    // Extract weather details
+                    const period = forecast.getElementsByTagName('period')[0]?.textContent || 'N/A';
+                    const textSummary = forecast.getElementsByTagName('textSummary')[0]?.textContent || 'N/A';
+
+                    // Extract date and time details
+                    const dateTime = xmlDoc.getElementsByTagName('dateTime')[0];
+                    const year = dateTime.getElementsByTagName('year')[0]?.textContent || 'N/A';
+                    const month = dateTime.getElementsByTagName('month')[0]?.textContent || 'N/A';
+                    const day = dateTime.getElementsByTagName('day')[0]?.textContent || 'N/A';
+                    const hour = dateTime.getElementsByTagName('hour')[0]?.textContent || 'N/A';
+                    const minute = dateTime.getElementsByTagName('minute')[0]?.textContent || 'N/A';
+
+                    // Add the weather data as a new row in the table
+                    document.querySelector('#result tbody').innerHTML += `
+                        <tr>
+                            <td>${year}</td><td>${month}</td><td>${day}</td>
+                            <td>${hour}</td><td>${minute}</td><td>${period}</td><td>${textSummary}</td>
+                        </tr>`;
+                }
+            } catch (error) {
+                console.error('Error loading weather data:', error);
+                alert('Failed to load weather data. Please try again later.');
+            }
+        }
+
+        // Event listener for DOM content loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('loadButton').disabled = true; // Disable the search button initially
+            loadSiteList(); // Load the site list on page load
+
+            // Add an event listener for form submission
+            document.getElementById('searchForm').addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission behavior
+                const destination = document.getElementById('destination').value.trim(); // Get the entered city
+                if (destination) {
+                    loadWeather(destination); // Call the weather fetch function
+                } else {
+                    alert('Please enter a destination.');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
+
+
+
+
+

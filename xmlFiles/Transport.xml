@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CanadaTransportationBooking>
+  <Header>
+    <Navbar>
+      <Logo>Chasing Maple</Logo>
+      <Navigation>
+        <Menu>
+          <Item href="index.html">Home</Item>
+          <Item href="des.html">Destinations & Weather</Item>
+          <Item href="attractions.html">Attractions & Map</Item>
+          <Item href="reviews.html">Reviews</Item>
+          <Item href="itinerary.html">Itinerary Builder</Item>
+          <Item href="travelDeals.html">Travel Deals</Item>
+          <Item href="profile.html">Profile</Item>
+        </Menu>
+      </Navigation>
+    </Navbar>
+  </Header>
+
+  <Introduction>
+    <Title>Canada Transportation Booking</Title>
+    <Description>Book your travels across Canada with ease!</Description>
+  </Introduction>
+
+  <BookingForm>
+    <Form id="transportForm">
+      <Field>
+        <Label for="customerName">Enter Your Name:</Label>
+        <Input type="text" id="customerName" name="customerName" placeholder="Please enter your Name" required="true" />
+      </Field>
+      
+      <Field>
+        <Label for="transportMode">Select Transportation Mode:</Label>
+        <Select id="transportMode" name="transportMode">
+          <Option value="flight">Flight</Option>
+          <Option value="train">Train</Option>
+          <Option value="cab">Cab</Option>
+          <Option value="bicycle">Bicycle</Option>
+          <Option value="bus">Bus</Option>
+        </Select>
+      </Field>
+
+      <Field>
+        <Label for="location">Choose Departure Location:</Label>
+        <Select id="location" name="location">
+          <!-- Ontario cities will be populated dynamically -->
+        </Select>
+      </Field>
+
+      <Field>
+        <Label for="destination">Choose Destination Location:</Label>
+        <Select id="destination" name="destination">
+          <!-- Ontario cities will be populated dynamically -->
+        </Select>
+      </Field>
+
+      <Field>
+        <Label for="schedule">Select Schedule:</Label>
+        <Select id="schedule" name="schedule">
+          <Option value="morning">Morning (8 AM - 12 PM)</Option>
+          <Option value="afternoon">Afternoon (12 PM - 4 PM)</Option>
+          <Option value="evening">Evening (4 PM - 8 PM)</Option>
+          <Option value="night">Night (8 PM - 12 AM)</Option>
+        </Select>
+      </Field>
+
+      <Field>
+        <Label for="paymentMethod">Payment Method:</Label>
+        <Select id="paymentMethod" name="paymentMethod">
+          <Option value="card">Card</Option>
+          <Option value="presto">Presto</Option>
+        </Select>
+      </Field>
+
+      <Button type="button" action="submitBooking">Book Now</Button>
+    </Form>
+  </BookingForm>
+
+  <Information>
+    <Section>
+      <Title>Weather and Traffic Updates</Title>
+      <WeatherContainer>Select a location for weather updates.</WeatherContainer>
+      <TrafficContainer>Select a location for traffic updates.</TrafficContainer>
+    </Section>
+  </Information>
+
+  <BookingSummary>
+    <Title>Your Booking Summary</Title>
+    <SummaryContainer>Booking details will be displayed here.</SummaryContainer>
+    <Buttons>
+      <Button action="printSummary">Print</Button>
+      <Button action="emailSummary">Email</Button>
+    </Buttons>
+  </BookingSummary>
+
+  <Slideshow>
+    <Slide>
+      <Image src="transportsPictures/IMG_20241104_072125.jpg" alt="Bus Station 1" />
+    </Slide>
+    <Slide>
+      <Image src="transportsPictures/IMG_20241104_072129.jpg" alt="Bus Station 2" />
+    </Slide>
+    <Slide>
+      <Image src="transportsPictures/IMG_20241104_074510.jpg" alt="Train Station" />
+    </Slide>
+    <Slide>
+      <Image src="transportsPictures/IMG_20241104_074513.jpg" alt="Train Station" />
+    </Slide>
+  </Slideshow>
+
+  <Scripts>
+    <Script src="javascript/Transport.js" />
+  </Scripts>
+</CanadaTransportationBooking>

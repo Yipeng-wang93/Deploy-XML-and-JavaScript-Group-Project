@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ItineraryBuilderAndGuides>
+  <Header>
+    <Navbar>
+      <Logo>Travel Explorer</Logo>
+      <Navigation>
+        <Menu>
+          <Item href="index.html">Home</Item>
+          <Item href="des.html">Destinations & Weather</Item>
+          <Item href="attractions.html">Attractions & Map</Item>
+          <Item href="reviews.html">Reviews</Item>
+          <Item href="itinerary.html">Itinerary Builder</Item>
+          <Item href="travelDeals.html">Travel Deals</Item>
+          <Item href="profile.html">Profile</Item>
+        </Menu>
+      </Navigation>
+    </Navbar>
+  </Header>
+
+  <Sections>
+    <Section id="itinerary-builder">
+      <Title>Build Your Travel Itinerary</Title>
+      <Form>
+        <Field>
+          <Label for="destination">Select Destination:</Label>
+          <Input type="text" id="destination" name="destination" placeholder="Enter your destination" required="true" />
+        </Field>
+        <Field>
+            <Label for="Accomodation">Select Hotel:</Label>
+            <select id="Hotel" name="Hotel">
+          </Field>
+        <Field>
+          <Label for="start-date">Start Date:</Label>
+          <Input type="date" id="start-date" name="start-date" required="true" />
+        </Field>
+        <Field>
+          <Label for="end-date">End Date:</Label>
+          <Input type="date" id="end-date" name="end-date" required="true" />
+        </Field>
+        <Field>
+          <Label for="activities">Activities:</Label>
+          <Textarea id="activities" name="activities" rows="4" placeholder="List activities you want to include" required="true" />
+        </Field>
+        <Button type="button" action="createItinerary">Create Itinerary</Button>
+      </Form>
+    </Section>
+
+    <Section id="travel-guides">
+      <Title>Travel Guides</Title>
+      <GuidesList>
+        <!-- Dynamic travel guides information -->
+      </GuidesList>
+      <DownloadContainer />
+    </Section>
+  </Sections>
+
+  <Footer>
+    <Text>© 2024 Chasing Maple. All rights reserved.</Text>
+  </Footer>
+
+  <Scripts>
+    <Script src="javascript/itinerary.js" />
+  </Scripts>
+</ItineraryBuilderAndGuides>

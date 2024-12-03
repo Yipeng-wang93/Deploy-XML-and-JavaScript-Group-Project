@@ -1,0 +1,13 @@
+{
+    "Toronto": {
+      "train": { "schedule": ["Morning", "Afternoon", "Evening"], "price": 15 },
+      "cab": { "schedule": ["24/7"], "price": 25 },
+      "bicycle": { "schedule": ["Morning", "Afternoon"], "price": 5 },
+      "bus": { "schedule": ["Morning", "Evening"], "price": 3 }
+    },
+    "Ottawa": {
+      "train": { "schedule": ["Morning", "Evening"], "price": 20 },
+      "cab": { "schedule": ["24/7"], "price": 30 },
+      "bus": { "schedule": ["Afternoon", "Evening"], "price": 3 }
+    }
+  }

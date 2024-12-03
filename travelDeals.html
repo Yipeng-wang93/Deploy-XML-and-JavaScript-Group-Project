@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canada Transportation Booking</title>
+  <link rel="stylesheet" href="styles/Travelling.css">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo"><a href="">Chasing Maple</a></div>
+      <nav>
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="des.html">Destinations & Weather</a></li>
+              <li><a href="attractions.html">Attractions & Map</a></li>
+              <li><a href="reviews.html">Reviews</a></li>
+              <li><a href="itinerary.html">Itinerary Builder</a></li>
+              <li><a href="travelDeals.html">Travel Deals</a></li>
+              <li><a href="profile.html">Profile</a></li>
+          </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="intro">
+      <h1>Canada Transportation Booking</h1>
+      <p>Book your travels across canada with ease!</p>
+  </section>
+
+  <section class="booking-form">
+    <form id="transportForm">
+      <label for="customerName">Enter Your Name:</label>
+      <input type="text" id="customerName" name="customerName" placeholder="Please enter your Name" required>
+      
+      <!-- Rest of the form fields -->
+      <label for="transportMode">Select Transportation Mode:</label>
+      <select id="transportMode" name="transportMode">
+          <option value="transit">Train</option>
+          <option value="driving">Cab</option>
+          <option value="bicycling">Bicycle</option>
+          <option value="bus">Bus</option>
+      </select>
+             <label for="location">Choose Departure Location:</label>
+      <select id="location" name="location">
+        <!-- Ontario cities populated in script.js -->
+      </select>
+
+      <label for="destination">Choose Destination:</label>
+      <select id="destination" name="destination">
+        <!-- Ontario cities populated in script.js -->
+      </select>
+
+      <label for="schedule">Select Schedule:</label>
+      <select id="schedule" name="schedule">
+        <option value="morning">Morning (8 AM - 12 PM)</option>
+        <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+        <option value="evening">Evening (4 PM - 8 PM)</option>
+        <option value="night">Night (8 PM - 12 AM)</option>
+      </select>
+
+      <label for="paymentMethod">Payment Method:</label>
+      <select id="paymentMethod" name="paymentMethod">
+        <option value="card">Card</option>
+        <option value="presto">Presto</option>
+      </select>
+
+      <button type="button" onclick="submitBooking()">Book Now</button>
+    </form>
+  </section>
+
+  <section class="information">
+    <h2>Weather and Traffic Updates</h2>
+    <div id="weatherContainer">Select a location for weather updates.</div>
+    <div id="trafficContainer">Select a location for traffic updates.</div>
+  </section>
+
+  <section class="booking-summary">
+    <h2>Your Booking Summary</h2>
+    <div id="summaryContainer">Booking details will be displayed here.</div>
+    <button onclick="printSummary()">Print ticket</button>
+    <button onclick="emailSummary()">Email</button>
+  </section>
+
+  <div class="slideshow">
+    <div class="slide" style="background-image: url('transportsPictures/IMG_20241104_072125.jpg'); background-position: center; background-size: cover;background-repeat: no-repeat;"></div>
+    <div class="slide" style="background-image: url('transportsPictures/IMG_20241104_072129.jpg'); background-position: center; background-size: cover;background-repeat: no-repeat;"></div>
+    <div class="slide" style="background-image: url('transportsPictures/IMG_20241104_074510.jpg'); background-position: center; background-size: cover;background-repeat: no-repeat;"></div>
+    <div class="slide" style="background-image: url('transportsPictures/IMG_20241104_074513.jpg'); background-position: center; background-size: cover;background-repeat: no-repeat;"></div>
+  </div>
+  <footer>
+    <p>© 2024 Chasing Maple. All rights reserved.</p>
+</footer>
+
+  <script src="./javascript/Transport.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+/* Attraction Page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar nav ul li {
+    margin: 0 10px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar nav ul li a:hover {
+    color: #ddd;
+}
+
+/* Attractions Section */
+#attractions {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#attractions h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-section form {
+    display: inline-block;
+    text-align: left;
+    max-width: 400px;
+    width: 100%;
+}
+
+.search-section label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.search-section input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-section button:hover {
+    background-color: #0056b3;
+}
+
+#attractions-results {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.attraction-item {
+    margin-bottom: 15px;
+}
+
+.attraction-item p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+/* Interactive Map Section */
+#interactive-map {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#interactive-map h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#map-container {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .navbar nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-section form {
+        width: 90%;
+    }
+
+    #map-container {
+        width: 90%;
+    }
+
+    #attractions-results {
+        width: 90%;
+    }
+}

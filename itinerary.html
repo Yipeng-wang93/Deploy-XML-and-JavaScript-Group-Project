@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chasing Maple - Itinerary Builder & Guides</title>
+    <link rel="stylesheet" href="styles/itinerary.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="">Travel Explorer</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="des.html">Destinations & Weather</a></li>
+                    <li><a href="attractions.html">Attractions & Map</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="itinerary.html">Itinerary Builder</a></li>
+                    <li><a href="travelDeals.html">Travel Deals</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="itinerary-builder">
+        <h2>Build Your Travel Itinerary</h2>
+        <div class="itinerary-form">
+            <form action="">
+                <!-- Nuevo campo para Username -->
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your name" required>
+                
+                <label for="destination">Select Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter your destination" required>
+                
+                <label for="hotel">Choose Hotel:</label>
+                <select id="hotel" name="hotel" required>
+                    <!-- Hotels will be dynamically populated -->
+                </select>
+                
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date" name="start-date" required>
+                
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" name="end-date" required>
+                
+                <label for="activities">Activities:</label>
+                <textarea id="activities" name="activities" rows="4" placeholder="List activities you want to include" required></textarea>
+                
+                <button type="button" onclick="createItinerary()">Create Itinerary</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="travel-guides">
+        <h2>Travel Guides</h2>
+        <div id="guides-list">
+            <!-- Travel guides information will be displayed here dynamically -->
+        </div>
+        <div id="download-container"></div>
+    </section>
+    
+    <footer>
+        <p>© 2024 Chasing Maple. All rights reserved.</p>
+    </footer>
+
+    <script src="javascript/itinerary.js"></script>
+
+</body>
+</html>

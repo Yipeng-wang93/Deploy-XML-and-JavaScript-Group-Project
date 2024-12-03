@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chasing Maple - Attractions, Hotels, & Restaurants</title>
+    <link rel="stylesheet" href="styles/attractions.css">
+    <script>
+        // Variables to store the map, geocoder instance, and markers array
+        let map, geocoder, markers = [];
+        let isMapInitialized = false; // Flag to ensure the map is only initialized once
+
+        // Function to initialize the Google Map
+        window.initMap = function () {
+            if (!isMapInitialized) {
+                // Create a new map centered on Toronto
+                map = new google.maps.Map(document.getElementById('map-container'), {
+                    center: { lat: 43.65107, lng: -79.347015 },
+                    zoom: 10,
+                });
+                // Initialize the Geocoder for address lookups
+                geocoder = new google.maps.Geocoder();
+                isMapInitialized = true;
+            }
+        };
+
+        // Function to clear all existing markers from the map
+        function clearMarkers() {
+            markers.forEach((marker) => marker.setMap(null)); // Remove each marker from the map
+            markers = []; // Reset the markers array
+        }
+    </script>
+    <!-- Include the Google Maps API script with the initMap callback -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd51RebPS8Rjf_fcHO3FyDSSEa6AF9vMY&callback=initMap" defer></script>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="">Travel Explorer</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="des.html">Destinations & Weather</a></li>
+                    <li><a href="attractions.html">Attractions & Map</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="itinerary.html">Itinerary Builder</a></li>
+                    <li><a href="travelDeals.html">Travel Deals</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section for entering location and displaying results -->
+    <section id="attractions">
+        <h2>Attractions, Hotels, & Restaurants</h2>
+        <!-- The form to handle the submit event -->
+        <form id="searchForm">
+            <label for="location">Enter Location:</label>
+            <input type="text" id="location" placeholder="Enter city or area" required>
+            <!-- Submit button to trigger the city search -->
+            <button type="submit" id="searchButton">Search</button>
+        </form>
+        <div id="attractions-results"></div>
+    </section>
+
+    <!-- Section containing the interactive map -->
+    <section id="interactive-map">
+        <h2>Interactive Map</h2>
+        <div id="map-container" style="height: 500px;"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Chasing Maple. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add an event listener to run after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchForm = document.getElementById('searchForm'); // Get the search form
+            // Add a submit event listener to the form
+            searchForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent the default form submission behavior
+                const address = document.getElementById('location').value.trim(); // Get the user-entered location
+                if (address) {
+                    geocodeAndFetchAttractions(address); // Call the function to fetch data and update the map
+                } else {
+                    alert('Please enter a location.'); // Show an alert if the input is empty
+                }
+            });
+        });
+
+        // Function to geocode an address and fetch nearby attractions
+        function geocodeAndFetchAttractions(address) {
+            geocoder.geocode({ address }, (results, status) => {
+                if (status === 'OK') {
+                    const location = results[0].geometry.location; // Get the geocoded location
+
+                    // Update the map's center to the new location
+                    map.setCenter(location);
+
+                    // Clear any existing markers
+                    clearMarkers();
+
+                    // Add a marker for the searched location
+                    const marker = new google.maps.Marker({
+                        map: map,
+                        position: location,
+                    });
+                    markers.push(marker); // Add the new marker to the markers array
+
+                    // Fetch attractions from the backend using the entered location
+                    fetch(`http://localhost:4000/api/attractions?location=${encodeURIComponent(address)}`)
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(`Failed to fetch attractions: ${response.statusText}`);
+                            }
+                            return response.json(); // Parse the JSON response
+                        })
+                        .then((data) => displayAttractions(data)) // Pass the fetched data to the display function
+                        .catch((error) => {
+                            console.error('Error fetching attractions:', error); // Log any errors
+                            alert('Failed to fetch attraction data. Please try again later.');
+                        });
+                } else {
+                    alert(`Geocode was not successful: ${status}`); // Show an alert if geocoding fails
+                }
+            });
+        }
+
+        // Function to display fetched attractions in the results section
+        function displayAttractions(data) {
+            const resultsDiv = document.getElementById('attractions-results'); // Get the results container
+            resultsDiv.innerHTML = '<h3>Attractions, Hotels, & Restaurants:</h3>';
+
+            // Check if there are no attractions returned
+            if (!data.attractions || data.attractions.length === 0) {
+                resultsDiv.innerHTML += '<p>No attractions found for the entered location.</p>';
+                return;
+            }
+
+            // Iterate through the attractions and display each one
+            data.attractions.forEach((item) => {
+                const div = document.createElement('div');
+                div.classList.add('attraction-item'); // Add a CSS class for styling
+                div.textContent = `${item.name} (${item.type}) - ${item.address}`; // Format the attraction details
+                resultsDiv.appendChild(div); // Add the attraction to the results section
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
